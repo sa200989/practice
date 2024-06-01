@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.json:json:20210307'
+}
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'funHttpServer.WebServer'
+        )
+    }
+}
+
+application {
+    mainClassName = 'funHttpServer.WebServer'
+}
+
+task FunWebServer(type: JavaExec) {
+    group = 'http'
+    description = 'Simple Http Demo'
+
+    classpath = sourceSets.main.runtimeClasspath
+
+    main = 'funHttpServer.WebServer'
+    standardInput = System.in
+}
